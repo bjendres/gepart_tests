@@ -33,5 +33,5 @@ Feature: A member of the assembly caller's role defines periods, deadlines, and 
   # GUI test: on submission the clicked button is disabled to prevent double click errors
   # GUI test: prefill stored values in the view
   # GUI test: on error prefill provided values in the view, mark errors and show message
-  # GUI test: on success redirect to agenda
+  # GUI test: on success redirect to agenda (to prevent double-posting on refresh)
   # GUI test: cancel requires a confirmation if some fields have been filled, and does not persist the assembly details

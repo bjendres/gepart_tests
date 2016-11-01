@@ -16,7 +16,6 @@ Feature: Any known/active user can view the list of pending, future, and past as
     Given I am not logged in
     When I attempt to view the pending assembly
     Then the result is error for invalid session
-     And the login page is shown
 
   # GUI test: the screen is rendered according to the mockup (without implementation hints) on Windows Firefox, Android Chrome, and iOS Safari
   # GUI test: the html code contains all features of the mockup
@@ -32,3 +31,4 @@ Feature: Any known/active user can view the list of pending, future, and past as
   # GUI test: on submission the clicked button is disabled to prevent double click errors
   # GUI test: available precedings are linked for assemblies, with filename of the gatherering date
   # GUI test: the menu links to the user account page, manual and login (while invalidating the session for logout)
+  # GUI test: on invalid session error, the user is redirected to the login page

@@ -3,7 +3,7 @@ Feature: A member of the assembly caller's role defines periods, deadlines, and 
   Scenario: Edit assembly
     Given I am logged in
       And I have the assembly caller's role
-      And I attempt to edit the called pending assembly
+      And I attempt to edit the pending assembly
       And a vote exist for the pending assembly
       And a support exist for the pending assembly
     When I submit the assembly id

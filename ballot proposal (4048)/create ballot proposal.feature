@@ -17,7 +17,7 @@ Feature: Any associate may propose an issue for balloting.
       
     Examples:
       | Title  | Description | Urgent  | Attachment | Button | Confirm | Result |
-      |Proposal|             | checked | attach1.pdf|publish |  Ok     | proposal is created, Attachment added, support evaluation initiated, return to agenda, audit log|
+      |Proposal|             | checked | ch1.pdf    |publish |  Ok     | proposal is created, Attachment added, support evaluation initiated, return to agenda, audit log|
       |challeng| something   |unchecked|            |publish |  Ok     | proposal is created, return to agenda, audit log with user id, ip, event|
       |challeng| something   |unchecked|            |publish | Cancel  | nothing saved, return to newballot |
       |        | anything    | checked |            |publish |         | error: missing title, nothing saved, stay on page |

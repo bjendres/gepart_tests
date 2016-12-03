@@ -24,7 +24,9 @@ Feature: A member of the executive board or of the supervisory board defines per
       | executive  | regular       | today             | today+14        | today+15    | today+22  | today+23      | 12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 | today+37 | success |
       | supervisor | extraordinary | today             | today+15        | today+18    | today+26  | today+27      |                | today+40       | success |
       | executive  | regular       | today-1           | today+1         | today+15    | today+22  | today+23      |                | today+37       | error for past date on calling                     |
-      | executive  | regular       | malformed         | 31.02.2017      | extralongxx | today+22  | today+23      |                | today+37       | errors for malformed, extralong, and invalid dates |
+      | executive  | regular       | 123.45.6          | today+1         | today+2     | today+22  | today+23      |                | today+27       | error for malformed date |
+      | executive  | regular       | today-10          | 31.02.2017      | 04.03.2017  | 19.03.2017| 22.03.2017    |                | 25.03.2017     | error for non-existing date|
+      | executive  | regular       | today             | today+14        | extralongxx | today+22  | today+23      |                | today+37       | error for extralong date| 
       | executive  | regular       | today             | today-1         | today+15    | today+22  | today+23      |                | today+37       | error for DeliberationEnd before DeliberationStart |
       | executive  | regular       | today             | today+14        | today+12    | today+22  | today+23      |                | today+37       | error for VotingStart before DeliberationEnd       |
       | executive  | regular       | today             | today+14        | today+15    | today+13  | today+23      |                | today+37       | error for VotingEnd before VotingStart             |
@@ -36,7 +38,11 @@ Feature: A member of the executive board or of the supervisory board defines per
       | executive  | extraordinary | today             | today+15        |             | today+26  | today+27      |                | today+40       | error for missing VotingStart                      |
       | executive  | extraordinary | today             | today+15        | today+18    |           | today+27      |                | today+40       | error for missing VotingEnd                        |
       | executive  | extraordinary | today             | today+15        | today+18    | today+26  |               |                | today+40       | error for missing GatheringDate                    |
-      | executive  | extraordinary | today;drop schema public cascade; | today+1;rm -rf / | today+18    | today+26  | non-printable UTF-8 | non-printable UTF-8 |                | errors for missing ProceedingsEnd, unallowed DeliberationStart/End, and non-printable UTF-8 characters |
+      | executive  | extraordinary | today             | today+15        | today+18    | today+26  | today+27      |                |                | error for missing ProceedingsEnd                   |
+      | executive  | extraordinary | today;drop schema public cascade| today+15  | today+18    | today+26  | today+30    |          | today+40       | error for unallowed DeliberationStart   |
+      | executive  | extraordinary | today             | today+1; rm -rf /       | today+18    | today+26  | today+30    |          | today+40       | error for unallowed DeliberationEnd     |
+      | executive  | extraordinary | today             | today+15        | today+18    | today+26  |non-printable UTF-8  |          | today+40       | error for non-printable GatheringDate   |
+      | executive  | extraordinary | today             | today+15        | today+18    | today+26  | today+30      |non-printable UTF-8 | today+40   | error for non-printable GatheringInfos  |
       | executive  | regular       | today             | today+14        | today+15    | today+22  | today+23      | 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901 | today+37 | error for too long GatheringInfos |
 
   # GUI test: the automated tests must be verified manually too for visuals

@@ -31,12 +31,17 @@ Feature: Any associate may post an alternative proposal for an existing election
       |Challen|              |ch1.pdf, ch2.pdf,ch3.pdf, ch4.pdf, ch5.pdf, ch6.pdf |publish| |error: too many attachments, nothing saved, stay on page|
   
 
-  Scenario: alternative executive proposal
-    Given I try to make an alternative election proposal
-    When the committee is "executive"
-    Then the result is denial and an audit log entry is stored with user id, ip, event
+  Scenario Outline: alternative executive proposal
+    Given I make an alternative election proposal
+    When my role is <Role>
+      And the committee is "executive"
+    Then the result is <Result>
+    Examples:
+    | Role      | Result |
+    |supervisor | proposal is accepted, and an audit log entry is stored with user id, ip, event|
+    |not supervisor| denial, and an audit log entry is stored with user id, ip, event
 
-# GUI: Button "Alternative vorschlagen" is not offered for election of executives
+# GUI: Button "Alternative vorschlagen" for election of executives is offered only to supervisors
       
 
 

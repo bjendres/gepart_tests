@@ -18,15 +18,15 @@ Feature: Any associate may propose nominees for committees.
       
     Examples:
       |Committee| Urgent  |Nominee | Description | Attachment | Button | Confirm | Result |
-      |Comm1    |checked  |Nominee1|             |  ch1.pdf   |publish |  Ok     | proposal is created, Attachment added, support evaluation initiated, return to agenda, audit log|
-      |Comm200  |unchecked|Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx | something   |            |publish |  Ok     | proposal is created, return to agenda, audit log with user id, ip, event|
-      |challen  |checked  |Nom     | something   |            |publish | Cancel  | nothing saved, return to newballot |
-      |         |unchecked|Nom     | anything    |            |publish |         | error: missing committee, nothing saved, stay on page |
-      |Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge  |checked|Nom| | |publish|  | error: committee too long, nothing saved, stay on page|
-      |non UTF-8|unchecked|Nom     |             |            |publish |         | error: characters not allowed, nothing saved, stay on page|
-      |ElectErr|checked   |Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx N|  |  |publish|     | error: Nominee too long, nothing saved, stay on page|
-      |ElectErr|checked   |        | something   |            |publish |         | error: Nominee missing, nothing saved, stay on page|
-      |ElectErr|checked   |Nom     |more than 2000 characters| |publish|         | error: description too long, nothing saved, stay on page|    
+      |Comm1    |checked  |Nominee1|             |  ch1.pdf   | submit |  Ok     | proposal is created, Attachment added, support evaluation initiated, return to agenda, audit log|
+      |Comm200  |unchecked|Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx | something   |            | submit |  Ok     | proposal is created, return to agenda, audit log with user id, ip, event|
+      |challen  |checked  |Nom     | something   |            | submit | Cancel  | nothing saved, return to newballot |
+      |         |unchecked|Nom     | anything    |            | submit |         | error: missing committee, nothing saved, stay on page |
+      |Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge  |checked|Nom| | | submit |  | error: committee too long, nothing saved, stay on page|
+      |non UTF-8|unchecked|Nom     |             |            | submit |         | error: characters not allowed, nothing saved, stay on page|
+      |ElectErr|checked   |Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx N|  |  | submit |     | error: Nominee too long, nothing saved, stay on page|
+      |ElectErr|checked   |        | something   |            | submit |         | error: Nominee missing, nothing saved, stay on page|
+      |ElectErr|checked   |Nom     |more than 2000 characters| | submit |         | error: description too long, nothing saved, stay on page|    
       |Challen |checked   |Nom     |             |ch1.pdf     |cancel  | leave   | nothing is saved, return to agenda |
       |Challen |checked   |Nom     |             |            |cancel  | stay    | nothing is saved, return to newelection |
       |Challen |              |ch1.pdf, ch2.pdf,ch3.pdf, ch4.pdf, ch5.pdf, ch6.pdf |publish| |error: too many attachments, nothing saved, stay on page|

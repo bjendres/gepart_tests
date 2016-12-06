@@ -16,13 +16,13 @@ Feature: Any associate may post an alternative proposal for an existing ballot.
 
     Examples:
       | Title  | Description | Attachment | Button | Confirm | Result |
-      |Proposal|             | attach1.pdf|publish |  Ok     | proposal is created, Attachment added, support evaluation initiated, return to agenda, an audit log entry is stored with user id, ip, event |
-      |challeng| something   |            |publish |  Ok     | proposal is created, return to agenda, an audit log entry is stored with user id, ip, event  |
-      |challeng| something   |            |publish | Cancel  | nothing saved, return to newballot |
-      |        | anything    |            |publish |         | error: missing title, nothing saved, stay on page |
-      |Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge  | | |publish|  | error: title too long, nothing saved, stay on page|
-      |non UTF-8|            |            |publish |         | error: characters not allowed, nothing saved, stay on page|
-      |Challen|more than 2000 characters| |publish |         | error: description too long, nothing saved, stay on page|    
+      |Proposal|             | attach1.pdf| submit |  Ok     | proposal is created, Attachment added, support evaluation initiated, return to agenda, an audit log entry is stored with user id, ip, event |
+      |challeng| something   |            | submit |  Ok     | proposal is created, return to agenda, an audit log entry is stored with user id, ip, event  |
+      |challeng| something   |            | submit | Cancel  | nothing saved, return to newballot |
+      |        | anything    |            | submit|         | error: missing title, nothing saved, stay on page |
+      |Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge  | | |submit|  | error: title too long, nothing saved, stay on page|
+      |non UTF-8|            |            | submit |         | error: characters not allowed, nothing saved, stay on page|
+      |Challen|more than 2000 characters| | submit |         | error: description too long, nothing saved, stay on page|    
       |Challen|              |ch1.pdf     |cancel  | leave   | nothing is saved, return to agenda |
       |Challen|              |            |cancel  | stay    | nothing is saved, return to newballot |
       |Challen|              |ch1.pdf, ch2.pdf,ch3.pdf, ch4.pdf, ch5.pdf, ch6.pdf |publish| |error: too many attachments, nothing saved, stay on page|

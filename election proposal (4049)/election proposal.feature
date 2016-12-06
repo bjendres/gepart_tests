@@ -32,49 +32,6 @@ Feature: Any associate may propose nominees for committees.
       |Challen |              |ch1.pdf, ch2.pdf,ch3.pdf, ch4.pdf, ch5.pdf, ch6.pdf |publish| |error: too many attachments, nothing saved, stay on page|
   
 
-# the following 3 Scenario Outlines are identical with the ones in ballot proposal(4048), except for the name of the pages
-#
-  Scenario Outline: Adding attachments   
-    Given I am not muted 
-      And I am on page newelection (Wahl beantragen)
-      or I am on page newproposal_election (Vorschlag zu Wahl-Antrag)
-    When there are already the number of attachments <no attachments>
-      And I select the file <File> from the file system
-      And I click the button Add (Hinzufügen) 
-    Then the result is <Result>
-
-    Examples:
-      |no attachments| File      | Result |
-      |   0          | ch1.pdf   |ch1.pdf is shown with a delete-button to the right, a new select box is offered | 
-      |   4          | ch5.pdf   |ch5.pdf is shown beneath the other attachments, all with a corresponding delete-button, but no new select box|
-      |   1          | ch8.pdf   |error: attachment too big |
-      |   3          | ch7.doc   |error: only .pdf files allowed
-      |   5          | ch6.pdf   |error: more than 5 attachments |
-
-
-  Scenario Outline: removing attachments
-    Given I am not muted
-      And I am on page newelection (Wahl beantragen)
-      or I am on page newproposal_election (Vorschlag zu Wahl-Antrag)
-    When there are already a number of attachments <no attachments>
-      And I click the button delete (Entfernen) in line <Line> of the list of attachments
-    Then the result is <Result>
-
-    Examples:
-      |no attachments| Line | Result |
-      |     1        |  1   |empty list of attachments, box to select an attachment |
-      |     3        |  2   |2 attachments ordered by ID, box to select an attachment below |
-      |     0        |  1   | error: nothing to delete |                     # in the GUI there should not be a button to click   
-      |     5        |      | list of 5 attachments, no box to select an attachment |
-
-
-  Scenario: adding and removing attachments
-      And I am on page newelection (Wahl beantragen)
-      or I am on page newproposal_election (Vorschlag zu Wahl-Antrag)
-      And there is at least on attachment
-    When I remove 1 attachment
-      And add 1 attachment
-    Then the added attachment is shown beneath older attachments
 
   Scenario: muted associate
     Given I am muted

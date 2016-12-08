@@ -1,0 +1,11 @@
+the automated tests must be verified manually too for visuals
+the screen is rendered according to the mockup (without implementation hints) on Windows Firefox, Android Chrome, and iOS Safari
+the html code contains all features of the mockup
+autofocus first (erroneous) field
+on submission the clicked button is disabled to prevent double click errors
+prefill stored values in the view
+on error prefill provided values in the view, mark errors and show message
+on success redirect to agenda (to prevent double-posting on refresh)
+cancel requires a confirmation if some fields have been changed, and does not persist the assembly details
+in case of an invalid session the user is redirected login screen
+no general error details or stack trace is shown

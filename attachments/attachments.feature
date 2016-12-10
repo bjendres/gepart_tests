@@ -19,6 +19,7 @@ Feature: add and delete attachments
       |   3          | ch7.doc   |error: only .pdf files allowed
       |   5          | ch6.pdf   |error: more than 5 attachments |
       |   2          | ch9.pdf   |error: no true .pdf file (does not start with "%PDF")
+      |   1          |ch10 this filename is too long and should be shortened automatically to 50 characters, including the .pdf | a shortened filename is shown with a delete-button to the right, a new select box is offered | 
 
 
   Scenario Outline: removing attachments

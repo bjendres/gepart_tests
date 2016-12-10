@@ -18,6 +18,7 @@ Feature: add and delete attachments
       |   1          | ch8.pdf   |error: attachment too big |
       |   3          | ch7.doc   |error: only .pdf files allowed
       |   5          | ch6.pdf   |error: more than 5 attachments |
+      |   2          | ch9.pdf   |error: no true .pdf file (does not start with "%PDF")
 
 
   Scenario Outline: removing attachments

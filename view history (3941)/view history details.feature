@@ -21,7 +21,6 @@ Feature: view the list of pending, future, and past assemblies.
       | past           | pending        |           |           |Error: wrong order of assemblyIDs
       | past           | future         |           |           |Error: wrong order of assemblyIDs
 
-# can there be only past assemblies? There should always be a pending/future assembly
 
 
   Scenario Outline: Buttons in assembly history view according to role

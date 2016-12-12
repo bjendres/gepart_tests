@@ -40,4 +40,9 @@ Feature: add and delete attachments
     Given there is at least on attachment
     When I remove 1 attachment
       And add 1 attachment
-Then the added attachment is shown beneath older attachments
+    Then the added attachment is shown beneath older attachments
+    
+  Scenario: file not existing
+    Given there is 1 attachment
+    When I enter "nonexisting file" as attachment name
+    Then this is refused because the file does not exist

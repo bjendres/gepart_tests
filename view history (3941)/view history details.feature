@@ -18,6 +18,8 @@ Feature: view the list of pending, future, and past assemblies.
       | pending        | past           | first     | second    |
       | future         | past           | first     | second    |
       | pending        | future         |           |           |Error: wrong order of assemblyIDs
+      | past           | pending        |           |           |Error: wrong order of assemblyIDs
+      | past           | future         |           |           |Error: wrong order of assemblyIDs
 
 # can there be only past assemblies? There should always be a pending/future assembly
 
@@ -38,18 +40,18 @@ Feature: view the list of pending, future, and past assemblies.
       |supervisor |moderator | future       |past          |              |Einberufen         |Moderation           | success|
       |executive  |          | future       |past          |              |Einberufen         |                     | success|
       |associate  |moderator | future       |pending       | supervisor   |                   |Moderation           | success|
-      |supervisor |moderator | future       |pending       | supervisor   |Einberufung ‰ndern |Protokoll abschlieﬂen| success|
-      |executive  |          | future       |pending       | executive    |Einberufung ‰ndern |Protokoll abschlieﬂen| success|
+      |supervisor |moderator | future       |pending       | supervisor   |Einberufung √§ndern |Protokoll abschlie√üen| success|
+      |executive  |          | future       |pending       | executive    |Einberufung √§ndern |Protokoll abschlie√üen| success|
       |moderator  |          | future       |pending       | executive    |                   |Moderation           | success|
-      |supervisor |          | pending      | past         | supervisor   |Einberufung ‰ndern |Protokoll abschlieﬂen| success|
+      |supervisor |          | pending      | past         | supervisor   |Einberufung √§ndern |Protokoll abschlie√üen| success|
       |executive  |          | pending      | past         | supervisor   |                   |                     | success|
       |supervisor |          | pending      | past         | executive    |                   |                     | success|
-      |executive  |          | pending      | past         | executive    |Einberufung ‰ndern |Protokoll abschlieﬂen| success|
+      |executive  |          | pending      | past         | executive    |Einberufung √§ndern |Protokoll abschlie√üen| success|
       |executive  |moderator | pending      | past         | supervisor   |                   |Moderation           | success|
       |associate  |moderator | future       | past         |              |Einberufen         |Moderation           |Error: not allowed for associates| 
       |executive  |supervisor| pending      | past         | executive    |                   |                     |Error: role conflict |        
       |supervisor |          | pending      | past         | supervisor   |Einberufen         |                     |Error: not possible for pending assembly|
-      |executive  |          | future       | past         |              |Einberufung ‰ndern |                     |Error: only for pending assemblies possible|
+      |executive  |          | future       | past         |              |Einberufung √§ndern |                     |Error: only for pending assemblies possible|
   
 # is it allowed to change a call for an assembly between physical assembly and the adding of the proceedings? Is this checked somewhere?
 # attention: difficult TCs because CallerRoleName sometimes belongs to newest assembly and sometimes to newest-1

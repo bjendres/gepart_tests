@@ -1,3 +1,4 @@
+@api
 Feature: A member of the assembly caller's role defines periods, deadlines, and infos of the gathering.
 
   Scenario: Edit assembly
@@ -24,7 +25,7 @@ Feature: A member of the assembly caller's role defines periods, deadlines, and 
       And the support is not modified
     Examples:
       | Type          | DeliberationStart | DeliberationEnd | VotingStart | VotingEnd | GatheringDate | GatheringInfos | ProceedingsEnd | Result                                             |
-      | regular       | today-15          | today+2         | today+5     | today+12  | today+15      | Location       | today+22       | success |
+      | "regular"       | "today-15"          | "today+2"         | "today+5"   | "today+12"  | "today+15"      | "Location"       | "today+22"       | "success" |
 
   # GUI test: the automated tests must be verified manually too for visuals
   # GUI test: the screen is rendered according to the mockup (without implementation hints) on Windows Firefox, Android Chrome, and iOS Safari

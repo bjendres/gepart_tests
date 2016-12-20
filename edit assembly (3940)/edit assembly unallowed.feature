@@ -1,3 +1,4 @@
+@api
 Feature: Unallowed assembly editing is denied.
 
   Scenario Outline: Attempt to edit an assembly as unauthorized user

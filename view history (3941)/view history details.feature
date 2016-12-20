@@ -19,7 +19,6 @@ Feature: view the list of pending, future, and past assemblies.
       | "future"         | "past"           | "first"     | "second"    |
       | "pending"        | "future"         |           |           | #Error: wrong order of assemblyIDs
 
-# can there be only past assemblies? There should always be a pending/future assembly
 
 
   Scenario Outline: Buttons in assembly history view according to role
@@ -28,9 +27,9 @@ Feature: view the list of pending, future, and past assemblies.
       And the (newest assembly -1) has assemblyphase <assemblyphase2>
       And the CallerRoleName of the pending assembly is <callerRoleName>
     When I attempt to view the assembly history
-    Then I see the assembly history
-      and the buttons "Protokoll" for all past assemblies
-      and the buttons <button1> and <button2>
+    Then I see the assembly history 
+      and the buttons "Protokoll" for all past assemblies 
+      and the buttons <button1> and <button2> and <button3>
       and the result is <Result>
     Examples:
       | Role1     | Role2    |assemblyphase1|assemblyphase2|callerRoleName|button1            | button2             | Result |
@@ -52,6 +51,6 @@ Feature: view the list of pending, future, and past assemblies.
       |"executive"  |          | "future"       | "past"         |              |"Einberufung aendern" |                     |"Error: only for pending assemblies possible"|
 
 # is it allowed to change a call for an assembly between physical assembly and the adding of the proceedings? Is this checked somewhere?
-# attention: difficult TCs because CallerRoleName sometimes belongs to newest assembly and sometimes to newest-1
+# attention: difficult TCs because CallerRoleName sometimes belongs to newest assembly and sometimes to newest-1, whichever is the pending assembly
 
 #

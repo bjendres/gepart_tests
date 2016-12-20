@@ -2,7 +2,7 @@ Feature: add and delete attachments
 
 # this attachment handling is valid throughout this application 
 
-  Background: I am an associate, I am logged in, I am not muted 
+  Background: I am an associate or executive or supervisor, I am logged in, I am not muted 
 
   Scenario Outline: Adding attachments
     Given I want to add an attachment
@@ -18,6 +18,8 @@ Feature: add and delete attachments
       |   1          | ch8.pdf   |error: attachment too big |
       |   3          | ch7.doc   |error: only .pdf files allowed
       |   5          | ch6.pdf   |error: more than 5 attachments |
+      |   2          | ch9.pdf   |error: no true .pdf file (does not start with "%PDF")
+      |   1          |ch10 this filename is too long and should be shortened automatically to 50 characters, including the .pdf | a shortened filename is shown with a delete-button to the right, a new select box is offered | 
 
 
   Scenario Outline: removing attachments
@@ -38,4 +40,9 @@ Feature: add and delete attachments
     Given there is at least on attachment
     When I remove 1 attachment
       And add 1 attachment
-Then the added attachment is shown beneath older attachments
+    Then the added attachment is shown beneath older attachments
+    
+  Scenario: file not existing
+    Given there is 1 attachment
+    When I enter "nonexisting file" as attachment name
+    Then this is refused because the file does not exist

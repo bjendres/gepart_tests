@@ -10,7 +10,7 @@ Feature: Unallowed assembly calls are denied.
       But no assembly details are updated
     Examples:
       | Role      | Result                        |
-      | Genossenschaftler | "error for missing permissions" |
+      | Genossenschafter | "error for missing permissions" |
       | Moderator | "error for missing permissions" |
 
   Scenario: Attempt to call a future assembly while the pending assembly is ongoing

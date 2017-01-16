@@ -1,5 +1,5 @@
 @api
-Feature: A member of the Vorstand board or of the supervisory board defines periods, deadlines, and infos of the gathering.
+Feature: A member of the Vorstand board or of the Aufsichtsrat board defines periods, deadlines, and infos of the gathering.
 
   Scenario Outline: Call assembly
     Given I am logged in as a role <Role>
@@ -43,7 +43,7 @@ Feature: A member of the Vorstand board or of the supervisory board defines peri
       | "Vorstand" | "extraordinary" |"today"            | "today+1; rm -rf /"       | "today+18"    | "today+26"  | "today+30"    |          | "today+40"       | "error for unallowed DeliberationEnd"     |
       | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  |"non-printable UTF-8"  |          | "today+40"       | "error for non-printable GatheringDate"   |
       | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+30"      |"non-printable UTF-8" | "today+40"   | "error for non-printable GatheringInfos"  |
-      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+22"  | "today+23"      | "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" | "0+37" | "error for too long GatheringInfos" |
+      | "Aufsichtsrat" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+22"  | "today+23"      | "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" | "0+37" | "error for too long GatheringInfos" |
 
   # GUI test: the automated tests must be verified manually too for visuals
   # GUI test: the screen is rendered according to the mockup (without implementation hints) on Windows Firefox, Android Chrome, and iOS Safari

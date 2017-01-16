@@ -2,7 +2,7 @@ Feature: add and delete attachments
 
 # this attachment handling is valid throughout this application 
 
-  Background: I am an associate or executive or supervisor, I am logged in, I am not muted 
+  Background: I am a Genossenschafter or Vorstand or Aufsichtsrat, I am logged in, I am not muted 
 
   Scenario Outline: Adding attachments
     Given I want to add an attachment

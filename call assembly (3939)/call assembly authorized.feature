@@ -3,7 +3,7 @@ Feature: A member of the Vorstand board or of the Aufsichtsrat board defines per
 
   Scenario Outline: Call assembly
     Given I am logged in as a role <Role>
-      And the pending assembly has not been called/persisted
+      And the pending assembly has not been called
       And I attempt to call the pending assembly
     When I submit the assembly id
       And I submit <Type> as Type
@@ -17,33 +17,33 @@ Feature: A member of the Vorstand board or of the Aufsichtsrat board defines per
       And I submit the session in an encrypted cookie
       And I submit the request's CSRF token
     Then the result is <Result>
-      And an audit log entry is stored with user id, ip, event and result (without sensitive/malformed data)
+      And an audit log entry is stored with user id, ip, event and result, but without sensitive or malformed data
       And the assembly details are persisted for success only, including caller's role
     Examples:
       | Role       | Type          | DeliberationStart | DeliberationEnd | VotingStart | VotingEnd | GatheringDate | GatheringInfos | ProceedingsEnd | Result                                             |
-      | "Vorstand" | "regular"     | "today"             | "today+14"        | "today+15"    | "today+22"  | "today+23"      | "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" | "today+37" | success |
-      | "Aufsichtsrat" | "extraordinary" | "today"             | "today+15"        | "today+18"    | "today+26"  | "today+27"      |                | "today+40 "      | "success" |
-      | "Vorstand" | "regular"     | "today-1"           | "today+1"         | "today+15"    | "today+22"  | "today+23"      |                | "today+37"       | "error for past date on calling"                     |
-      | "Vorstand" | "regular"     | "123.45.6"          | "today+1"         | "today+2"     | "today+22"  | "today+23"      |                | "today+27"       | "error for malformed date" |
-      | "Vorstand" | "regular"     | "today-10"          | "31.02.2017"      | "04.03.2017"  | "19.03.2017"| "22.03.2017"    |                | "25.03.2017"     | "error for non-existing date" |
+      | "Vorstand" | "regular"     | "today"             | "today+14"        | "today+15"    | "today+22"  | "today+23"    | "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" | "today+37" | success |
+      | "Aufsichtsrat" | "extraordinary" | "today"       | "today+15"        | "today+18"    | "today+26"  | "today+27"    |  "     "       | "today+40 "      | "success" |
+      | "Vorstand" | "regular"     | "today-1"           | "today+1"         | "today+15"    | "today+22"  | "today+23"    |                | "today+37"       | "error for past date on calling"                     |
+      | "Vorstand" | "regular"     | "123.45.6"          | "today+1"         | "today+2"     | "today+22"  | "today+23"    |                | "today+27"       | "error for malformed date" |
+      | "Vorstand" | "regular"     | "today-10"          | "31.02.2017"      | "04.03.2017"  | "19.03.2017"| "22.03.2017"  |                | "25.03.2017"     | "error for non-existing date" |
       | "Vorstand" | "regular"     |"today"            | "today+14"        | "extralongxx" | "today+22"  | "today+23"      |                | "today+37"       | "error for extralong date" |
-      | "Vorstand" | "regular"     |"today"            | "today-1"         | "today+15"    | "today+22"  | "today+23"      |                | today+37       | "error for DeliberationEnd before DeliberationStart" |
-      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+12"    | "today+22"  | "today+23"      |                | today+37       | "error for VotingStart before DeliberationEnd"       |
-      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+13"  | "today+23"      |                | today+37       | "error for VotingEnd before VotingStart"             |
-      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+22"  | "today+21"      |                | today+37       | "error for GatheringDate before VotingEnd "          |
-      | "Vorstand" |               |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+27"      |                | today+40       | "error for missing Type"                             |
-      | "Vorstand" | "invalid"       |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+27"      |                | "today+40"       | "error for invalid Type "                            |
-      | "Vorstand" | "extraordinary" |                   | "today+15"        | "today+18"    | "today+26"  | "today+27"      |                | "today+40"       | "error for missing DeliberationStart"                |
+      | "Vorstand" | "regular"     |"today"            | "today-1"         | "today+15"    | "today+22"  | "today+23"      |                | "today+37"       | "error for DeliberationEnd before DeliberationStart" |
+      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+12"    | "today+22"  | "today+23"      |                | "today+37"       | "error for VotingStart before DeliberationEnd"       |
+      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+13"  | "today+23"      |                |  "today+37"      | "error for VotingEnd before VotingStart"             |
+      | "Vorstand" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+22"  | "today+21"      |                |  "today+37"      | "error for GatheringDate before VotingEnd "          |
+      | "Vorstand" |               |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+27"      |                | "today+40"       | "error for missing Type"                             |
+      | "Vorstand" | "invalid"       |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+27"    |                | "today+40"       | "error for invalid Type "                            |
+      | "Vorstand" | "extraordinary" |                   | "today+15"        | "today+18"    | "today+26"  | "today+27"    |                | "today+40"       | "error for missing DeliberationStart"                |
       | "Vorstand" | "extraordinary" |"today"            |                 | "today+18"    | "today+26"  | "today+27"      |                | "today+40"       | "error for missing DeliberationEnd"                  |
       | "Vorstand" | "extraordinary" |"today"            | "today+15"        |             | "today+26"  | "today+27"      |                | "today+40"       | "error for missing VotingStart"                      |
       | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    |           | "today+27"      |                | "today+40"       | "error for missing VotingEnd"                        |
       | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  |               |                | "today+40 "      | "error for missing GatheringDate"                    |
-      | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+27"      |                |                | "error for missing ProceedingsEnd"                   |
-      | "Vorstand" | "extraordinary" | "today;drop schema public cascade"| "today+15"  | "today+18"    | "today+26"  | "today+30"    |          | "today+40"       | "error for unallowed DeliberationStart"   |
-      | "Vorstand" | "extraordinary" |"today"            | "today+1; rm -rf /"       | "today+18"    | "today+26"  | "today+30"    |          | "today+40"       | "error for unallowed DeliberationEnd"     |
-      | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  |"non-printable UTF-8"  |          | "today+40"       | "error for non-printable GatheringDate"   |
-      | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+30"      |"non-printable UTF-8" | "today+40"   | "error for non-printable GatheringInfos"  |
-      | "Aufsichtsrat" | "regular"     |"today"            | "today+14"        | "today+15"    | "today+22"  | "today+23"      | "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" | "0+37" | "error for too long GatheringInfos" |
+      | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+27"    |                |                  | "error for missing ProceedingsEnd"                   |
+      | "Vorstand" | "extraordinary" | "today;drop schema public cascade"| "today+15"  | "today+18"    | "today+26"  | "today+30"    |          | "today+40"   | "error for unallowed DeliberationStart"   |
+      | "Vorstand" | "extraordinary" |"today"            | "today+1; rm -rf /"    | "today+18"    | "today+26"  | "today+30"    |          | "today+40"        | "error for unallowed DeliberationEnd"     |
+      | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  |"non-printable UTF-8"  |          | "today+40"     | "error for non-printable GatheringDate"   |
+      | "Vorstand" | "extraordinary" |"today"            | "today+15"        | "today+18"    | "today+26"  | "today+30"      |"non-printable UTF-8" |"today+40"   | "error for non-printable GatheringInfos"  |
+      | "Aufsichtsrat" | "regular"   |"today"            | "today+14"        | "today+15"    | "today+22"  | "today+23"      | "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" | "today+37" | "error for too long GatheringInfos" |
 
   # GUI test: the automated tests must be verified manually too for visuals
   # GUI test: the screen is rendered according to the mockup (without implementation hints) on Windows Firefox, Android Chrome, and iOS Safari

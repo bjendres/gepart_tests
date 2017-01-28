@@ -1,5 +1,5 @@
 @api
-Feature: syntax checks for Abstimmungs-Antrag newballot, Vorschlag zu Abstimmungs-Antrag newproposal_ballot,  Anfrage newinquiry, Bericht newreport and newanswer
+Feature: syntax checks for Abstimmungs-Antrag newballot, Vorschlag zu Abstimmungs-Antrag newproposal_ballot,  Anfrage newinquiry, Bericht newreport, Vorschlag zu Wahl-Antrag newproposal_election and newanswer
 
   Scenario Outline: text length and character set checks
     When I am on page <Page> 
@@ -9,7 +9,7 @@ Feature: syntax checks for Abstimmungs-Antrag newballot, Vorschlag zu Abstimmung
     Then the result is <Result>
 
     Examples:  
-      |	Page	|	Input200	|	Input2000	|	Button	|	Result	|
+       |	Page	|	Input200	|	Input2000	|	Button	|	Result	|
       |	“Abstimmungs-Antrag”	|	“Comm1  “	|		|	“Antrag veröffentlichen”	|	“submit dialogue opens”	|
       |	“Abstimmungs-Antrag”	|	“Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nominee200” 	|		|	“Antrag veröffentlichen”	|	“submit dialogue opens”	|
       |	“Abstimmungs-Antrag”	|	“”	|		|	“Antrag veröffentlichen”	|	“error: missing title, keep input data, highlight incorrect field, stay on page” 	|
@@ -40,6 +40,15 @@ Feature: syntax checks for Abstimmungs-Antrag newballot, Vorschlag zu Abstimmung
       |	“Abstimmungs-Antrag”	|	“Comm1  “	|	"explanation"  	|	“Abbrechen”	|	“nothing saved to DB, return to Tagesordnung Agenda”	|
       |	“Anfrage”	|	“Comm1  “	|	"Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine200 Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine200 Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine400 Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine600 Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine800 Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine1000Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine1200Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine1400Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine1600Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomine1800Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nominee2001"	|	“Abbrechen”	|	“nothing saved to DB, return to Tagesordnung Agenda”	|
       |	“Bericht”	|		|	"explanation"  	|	“Abbrechen”	|	“nothing saved to DB, return to Tagesordnung Agenda”	|
+      |	“Vorschlag zu Abstimmungs-Antrag”	|	“Comm1  “	|		|	“Vorschlag veröffentlichen”	|	“submit dialogue opens”	|
+      |	“Vorschlag zu Abstimmungs-Antrag”	|	“Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nominee200” 	|		|	“Vorschlag veröffentlichen”	|	“submit dialogue opens”	|
+      |	“Vorschlag zu Abstimmungs-Antrag”	|	“”	|		|	“Vorschlag veröffentlichen”	|	“error: missing title, keep input data, highlight incorrect field, stay on page” 	|
+      |	“Vorschlag zu Abstimmungs-Antrag”	|	“Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challeng201”	|		|	“Vorschlag veröffentlichen”	|	“error: Input200 too long, keep input data, highlight incorrect field, stay on page” 	|
+      |	“Vorschlag zu Wahl-Antrag”	|	“Comm1  “	|		|	“Vorschlag veröffentlichen”	|	“submit dialogue opens”	|
+      |	“Vorschlag zu Wahl-Antrag”	|	“Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nomineexx Nominee200” 	|		|	“Vorschlag veröffentlichen”	|	“submit dialogue opens”	|
+      |	“Vorschlag zu Wahl-Antrag”	|	“”	|		|	“Vorschlag veröffentlichen”	|	“error: missing title, keep input data, highlight incorrect field, stay on page” 	|
+      |	“Vorschlag zu Wahl-Antrag”	|	“Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challenge Challeng201”	|		|	“Vorschlag veröffentlichen”	|	“error: Input200 too long, keep input data, highlight incorrect field, stay on page” 	|
+      |	“Vorschlag zu Wahl-Antrag”	|	“<non UTF-8>”	|		|	“Vorschlag veröffentlichen”	|	“error: characters not allowed, keep input data, highlight incorrect field, stay on page, log entry”	|
 
 
 
@@ -50,6 +59,7 @@ Feature: syntax checks for Abstimmungs-Antrag newballot, Vorschlag zu Abstimmung
 
 
 
-# GUI tests: page Abstimmungsantrag, Vorschlag zu Abstimmungsantrag Input2000 is Beschreibung
+
+# GUI tests: page Abstimmungsantrag, Vorschlag zu Abstimmungsantrag, Vorschlag zu Wahl-Antrag Input2000 is Beschreibung
 # page Anfrage Input2000 is Anfrage
 # page Bericht Input2000 is Erläuterung

@@ -2,8 +2,8 @@
 Feature: add and delete attachments 
 
 # this attachment adding and deleting handling is valid throughout this application 
-# pages: Abstimmungs-Antrag newballot, Vorschlag zu Abstimmungs-Antrag newproposal_ballot,  Anfrage newinquiry,
-# Bericht newreport and newanswer,
+# pages: Abstimmungs-Antrag newballot, Vorschlag zu Abstimmungs-Antrag newproposal_ballot,  Wahl-Antrag newelection, 
+# Vorschlag zu Wahl-Antrag newproposal_election, Anfrage newinquiry, Bericht newreport and newanswer.
 
   Background: I am a Genossenschafter or Vorstand or Aufsichtsrat, I am logged in, I am not muted 
 

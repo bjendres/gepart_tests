@@ -6,7 +6,8 @@ Feature: Navigation from agenda, depending on phase of asssembly
     Given I am on page agenda Tagesordnung
       And the assembly is future 
       And I have the role <Role>
-    When I click on <Link>
+      And I am not muted
+      When I click on <Link>
     Then I am directed to <Page>
       And after submit or cancel I return to <Return>
       And the result is <Result>
@@ -61,6 +62,7 @@ Feature: Navigation from agenda, depending on phase of asssembly
     Given I am on page agenda Tagesordnung
       And the assembly is called and before DeliberationEnd
       And I have the role <Role>
+      And I am not muted
     When I click on <Link>
     Then I am directed to <Page>
       And after submit or cancel I return to <Return>
@@ -117,6 +119,7 @@ Feature: Navigation from agenda, depending on phase of asssembly
     Given I am on page agenda Tagesordnung
       And the assembly is between DeliberationEnd and VotingStart
       And I have the role <Role>
+      And I am not muted
     When I click on <Link>
     Then I am directed to <Page>
       And after submit or cancel I return to <Return>
@@ -148,6 +151,7 @@ Feature: Navigation from agenda, depending on phase of asssembly
     Given I am on page agenda Tagesordnung
       And the assembly is between VotingStart and VotingEnd
       And I have the role <Role>
+      And I am not muted
     When I click on <Link>
     Then I am directed to <Page>
       And after submit or cancel I return to <Return>
@@ -173,20 +177,22 @@ Feature: Navigation from agenda, depending on phase of asssembly
     Given I am on page agenda Tagesordnung
       And the assembly is between VotingEnd and ProceedingsEnd
       And I have the role <Role>
+      And I am not muted
     When I click on <Link>
     Then I am directed to <Page>
-      And after submit or cancel I return to <Return>
+      And I have to return with the return button of the browser
       And the result is <Result>
 
   Examples:
-    |	Role	|	Link	|	Page	|	Return	|	Result	|
-    |	“Genossenschafter”	|	“Stimmzettel”	|	“votes_assembly spreadsheet”	|		|	“separate download of spreadsheet”	|
-    |	“Genossenschafter”	|	“Nicht zugelassene Tagesordnungspunkte”	|	“disregarded”	|		|		|
-    |	“Genossenschafter”	|	“künftige Generalversammlung”	|	“agenda of next assembly”	|		|		|
-    |	“Genossenschafter”	|	“Vorschlag Abstimmungs-Antrag”	|	“ballot_results”	|		|		|
-    |	“Genossenschafter”	|	“Vorschlag Wahl-Antrag”	|	“election_results”	|		|		|
-    |	“Caller”	|	“Protokoll abschließen”	|	“newproceedings”	|		|	“assembly becomes past”	|
-    |	“Genossenschafter”	|	“Protokoll abschließen”	|		|		|	“not allowed, Button not present in GUI”	|
+    |	Role	|	Link	|	Page	|	Result	|
+    |	“Genossenschafter”	|	“Stimmzettel”	|	“votes_assembly spreadsheet”	|	“separate download of spreadsheet”	|
+    |	“Genossenschafter”	|	“Nicht zugelassene Tagesordnungspunkte”	|	“disregarded”	|		|
+    |	“Genossenschafter”	|	“künftige Generalversammlung”	|	“agenda of next assembly”	|		|
+    |	“Genossenschafter”	|	“Vorschlag Abstimmungs-Antrag”	|	“ballot_results”	|		|
+    |	“Genossenschafter”	|	“Vorschlag Wahl-Antrag”	|	“election_results”	|		|
+    |	“Caller”	|	“Protokoll abschließen”	|	“newproceedings”	|	“assembly becomes past”	|
+    |	“Genossenschafter”	|	“Protokoll abschließen”	|		|	“not allowed, Button not present in GUI”	|
+
 
 
   Scenario Outline: Links on agenda for past assembly
@@ -195,15 +201,17 @@ Feature: Navigation from agenda, depending on phase of asssembly
       And I have the role <Role>
     When I click on <Link>
     Then I am directed to <Page>
-      And after submit or cancel I return to <Return>
+      And I have to return with the return button of the browser
       And the result is <Result>
 
   Examples:
-    |	“Genossenschafter”	|	“Stimmzettel”	|	“votes_assembly spreadsheet”	|		|	“separate download of spreadsheet”	|
-    |	“Vorstand”	|	“Nicht zugelassene Tagesordnungspunkte”	|	“disregarded”	|		|		|
-    |	“Aufsichtsrat”	|	“Protokoll”	|		|		|		|
-    |	“Moderator”	|	“Vorschlag Abstimmungs-Antrag”	|	“ballot_results, clicked Vorschlag”	|		|		|
-    |	“Genossenschafter”	|	“Vorschlag Wahl-Antrag”	|	“election_results, clicked Vorschlag”	|		|		|
-    |	“Vorstand”	|	“Abstimmungs-Antrag”	|	“ballot_results”	|		|		|
-    |	“Aufsichtsrat”	|	“Wahl-Antrag”	|	“election_results”	|		|		|
+    |	Role	|	Link	|	Page	|	Result	|
+    |	“Genossenschafter”	|	“Stimmzettel”	|	“votes_assembly spreadsheet”	|	“separate download of spreadsheet”	|
+    |	“Vorstand”	|	“Nicht zugelassene Tagesordnungspunkte”	|	“disregarded”	|		|
+    |	“Aufsichtsrat”	|	“Protokoll”	|		|		|
+    |	“Moderator”	|	“Vorschlag Abstimmungs-Antrag”	|	“ballot_results, clicked Vorschlag”	|		|
+    |	“Genossenschafter”	|	“Vorschlag Wahl-Antrag”	|	“election_results, clicked Vorschlag”	|		|
+    |	“Vorstand”	|	“Abstimmungs-Antrag”	|	“ballot_results”	|		|
+    |	“Aufsichtsrat”	|	“Wahl-Antrag”	|	“election_results”	|		|
+
 

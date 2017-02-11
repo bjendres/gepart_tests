@@ -48,8 +48,7 @@ Feature: Any associate may propose an issue for balloting.
       |"future" | "yes"        |
       |"past"   | "no"         |
 
-      
-
+# for a past assembly the page newballot should not be available at all
 
 
 

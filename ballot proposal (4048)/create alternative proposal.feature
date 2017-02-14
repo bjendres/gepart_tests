@@ -8,6 +8,7 @@ Feature: Any associate may post an alternative proposal for an existing ballot.
 
   Scenario Outline: create an alternative proposal
     Given I am not muted
+      And the assembly is before DeliberationEnd
       And I clicked the button alternative proposal Alternative vorschlagen on the Agenda page or the ballot page
       And the page newproposal_ballot Vorschlag zu Abstimmungs-Antrag opened
     When I enter a title <Title>

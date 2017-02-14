@@ -9,6 +9,7 @@ Feature: Any associate may propose an issue for balloting.
 
   Scenario Outline: create a new ballot proposal Abstimmungsantrag
     Given I am not muted
+      And the assembly is before DeliberationEnd 
       And I clicked the button newballot Abstimmung beantragen on the Agenda page 
       And the page newballot (Abstimmungs-Antrag) opened
     When I enter a title <Title>

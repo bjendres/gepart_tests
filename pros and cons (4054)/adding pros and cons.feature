@@ -2,7 +2,7 @@
 
 Feature: any proposal may be commented with pros Vorteile and/or cons Nachteile
 
-  Background: valid session
+  Background: valid session, assembly is before DeliberationEnd
 
   Scenario Outline: adding an argument
     Given I am on page <Page> 

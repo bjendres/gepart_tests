@@ -49,7 +49,9 @@ Feature: Any associate may make an inquiry.
      | "nn" | "nn"   | "nn"   | "correct mapping"|
      | "nn" | "nn-1" | "nn-1" | "mapping error"  |
      | "nn" | "nn+1" | "nn+1" | "mapping error"  |
-     | "nn" | "nn-1" | "nn"   | "mapping error"  |
-      
+     | "nn" | "nn-1" | "nn"   | "mapping error in db"  |
+     | "nn" |        | "nn"   | "mapping errror, not in db"|
+     | "nn" | "nn"   |        | "mapping error, not displayed"|
+     
     
     

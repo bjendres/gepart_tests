@@ -1,3 +1,4 @@
+@api
 
 Feature: Any associate may make an inquiry.
 
@@ -5,6 +6,7 @@ Feature: Any associate may make an inquiry.
 
   Scenario Outline: create a new inquiry
     Given I am not muted
+      And the assembly is before DeliberationEnd
       And I clicked the button new inquiry (Anfrage stellen) on the Agenda page
       And the page newinquiry (Anfrage) opened
     When I enter a title <Title>
@@ -35,3 +37,19 @@ Feature: Any associate may make an inquiry.
     When I make an inquiry
     Then I am not allowed to
 # GUI: only the button "support" is offered
+
+  Scenario Outline: mapping to assembly and display
+    When the inquiry was submitted correctly
+      And the assembly has <ID1>
+    Then the inquiry is mapped to assembly <ID2>
+      And the inquiry is displayed on the agenda of assembly <ID3>
+      And the result is <Result>
+   Examples:
+     | ID1  | ID2    | ID3    | Result  |
+     | "nn" | "nn"   | "nn"   | "correct mapping"|
+     | "nn" | "nn-1" | "nn-1" | "mapping error"  |
+     | "nn" | "nn+1" | "nn+1" | "mapping error"  |
+     | "nn" | "nn-1" | "nn"   | "mapping error"  |
+      
+    
+    

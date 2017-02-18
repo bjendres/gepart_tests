@@ -20,6 +20,7 @@ Background: I am on any of the pages newballot Abstimmungs-Antrag, newproposal_b
     Then the submit button is disabled to prevent double clicks
       And an audit log is stored with user id, ip, event and result without sensitive data
       And the content is stored to the DB
+      And I am stored as the author of the contribution
       And I return to where I have been before I got to the page I submitted
 
 # this is not accurate, because the submit button should be disabled immediately after being clicked

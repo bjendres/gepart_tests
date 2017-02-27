@@ -10,7 +10,7 @@ Feature: Executives and supervisors can file reports
     Given I am an executive Vorstand or a supervisor Aufsichtsrat
       And I am logged in
       And I am not muted
-      And the assembly is before DeliberationEnd
+      And the assembly is before VotingStart
       And I clicked the button <Button>
       And the page newreport Bericht opened
     When I enter a title <Title>
@@ -41,10 +41,14 @@ Feature: Executives and supervisors can file reports
     Given I am muted
     When I file a report
     Then I am not allowed to 
-      And an audit log is written           
-
-
-
+      And an audit log is written
+      
+  Scenario: not E 
+    Given I am neither an executive Vorstand nor supervisor Aufsichtsrat
+    When I file a report
+    Then I am not allowed to 
+      And an audit log is written
+      
 
 
 

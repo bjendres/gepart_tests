@@ -1,3 +1,5 @@
+@api
+
 Feature: Any known/active user can view the list of pending, future, and past assemblies.
 
   Scenario Outline: View assembly history
@@ -6,11 +8,11 @@ Feature: Any known/active user can view the list of pending, future, and past as
     When I attempt to view the pending assembly
     Then I see the assembly history
     Examples:
-      | Role       |
-      | associate  |
-      | supervisor |
-      | executive  |
-      | moderator  |
+      | Role        |
+      | "associate" |
+      | "supervisor"|
+      | "executive" |
+      | "moderator" |
 
   Scenario: Attempt to call an assembly without session
     Given I am not logged in

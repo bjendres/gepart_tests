@@ -14,7 +14,7 @@ Feature: result spread sheet
 #  Sortierung: Reihen: Genossenschafter alphabetisch
 #              Spalten: Anfragen und Anträge nach Id aufsteigend
 #
-# zugänglich über Stimmzettel
+# zugänglich über Stimmergebnisse
 
 # Content: for one assembly: participating associates, their supports, votes, and arguments for votes, muted or disfranchised, all ballots, elections and inquiries
 #
@@ -40,10 +40,10 @@ Feature: result spread sheet
 #      sequence number Reihungszahl
 #      argument Begründung
 #
-#  empty columns are deleted
+
 
 
   Scenario: layout
-    When I open the result spread sheet Stimmzettel
+    When I open the result spread sheet Stimmergebnisse
     Then I see all supports, votes, arguments and special attributes of all associates that participated
-      And they are arranged like described in the comments 
+      And they are arranged like described in the comments and in the votes_assembly3.csv

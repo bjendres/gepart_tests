@@ -1,0 +1,36 @@
+@api
+
+Feature: find the elected proposals
+
+  Background: the assembly is past VotingEnd and before physical assembly
+
+# per ballot: 
+#     is there exactly 1 proposal nobody has severe resistance against? if yes, it is elected by Konsent
+#     is there > 1 proposal nobody has severe resistance against? calculate resistance sum for these proposals, lowest sum wins by Konsent
+#     is there < 1 proposal nobody has severe resistance against? calculate resistance sum for all proposals, lowest sum wins
+
+
+  Scenario: one proposal without severe resistance
+
+    Given a ballot with several proposals      
+    When there is exactly 1 proposal nobody has severe resistance against
+    Then this proposal is elected by Konsent
+      And it is displayed with a badge Konsent
+
+  Scenario: several proposals without severe resistance
+
+    Given a ballot with several proposals      
+    When there are more than 1 proposals nobody has severe resistance against
+    Then the resistance sum for these  proposals is calculated
+      And the proposal with the lowest sum is elected by Konsent
+      And it is displayed with a badge Konsent
+
+  Scenario: all proposals meet severe resistance
+
+    Given a ballot with several proposals      
+    When there is no proposal nobody has severe resistance against
+    Then the resistance sum for all proposals is calculated
+      And the proposal with the lowest sum is elected by resistance measurement
+
+
+
